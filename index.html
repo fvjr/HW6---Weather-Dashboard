@@ -11,12 +11,21 @@
   <title>Weather Dashboard</title>
 </head>
 
+<body>
 <header class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class= "display-4" id = 'title'> Weather Dashboard</h1>
-    <p class="lead" id ='title-secondary'>Before you head out, check the weather!</p>
+    <h1 class= "display-9" id = "title"> Weather Dashboard</h1>
+    <p class="lead" id ="title-secondary">Before you head out, check the weather!</p>
   </div>
 </header>
+
+<div class = "search-container">
+<h2 id = "search-text"> Enter a city's name to search the weather</h2>
+<form class = "search-form-body" id = "search-form">
+<input name = "city" id = "city" type="text" class = "form-input"/><br>
+<button type="submit" class="btn btn-info">Search City</button>
+</form>
+</div>
 
   <script src="Assets/script.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"

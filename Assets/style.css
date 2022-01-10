@@ -1,0 +1,36 @@
+:root {
+  --primary:#FFFFFF;
+  --secondary:#D9D9D9;
+  --light-blue:#3C6E71;
+  --dark-blue:#284B63;
+  --dark:#353535;
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+.jumbotron {
+  height: 150px;
+}
+
+#title {
+  font-size: 30px;
+  text-align: center;
+}
+
+#title-secondary {
+  font-size: 20px;
+  text-align: center;
+}
+
+body {
+  background-color: var(--primary);
+  margin: 0;
+  padding: 0;
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: var(--dark);
+  line-height: 1.5;
+  font-size: 16px;
+}
