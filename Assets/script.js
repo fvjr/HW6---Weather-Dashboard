@@ -2,6 +2,17 @@ var btnSearchCityEl = document.querySelector('#input-form')
 var cityInputEl = document.querySelector('#city')
 var searchedCityNameEl = document.querySelector('#searched-city-name')
 
+//access these via dom
+var currentCityName = document.querySelector('#current-city-name');
+var currentCityDate = document.querySelector('#current-city-date');
+var currentCityIcon = document.querySelector('#current-city-icon');
+var currentCityTemperature = document.querySelector('#current-city-temperature');
+var currentCityHumidity = document.querySelector('#current-city-humidity');
+var currentCityWindspeed = document.querySelector('#current-city-windspeed');
+var currentCityUVIndex = document.querySelector('#current-city-uv-index');
+
+//fin
+
 //open weather api
 //api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
 
@@ -16,63 +27,70 @@ fetch(`http://api.openweathermap.org/data/2.5/weather?q=philadelphia&appid=c5ac3
   }
   );
 
-  //make a function that updates city in fetch url to match user input
+//make a function that updates city in fetch url to match user input
 
-  //possible to use template literal to have user value input be saved into a variable's value which is then used to check in fetch?
-  //fetch(`http://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&appid=c5ac3bf1e2bd986188132643f307e82c`)
+//possible to use template literal to have user value input be saved into a variable's value which is then used to check in fetch?
+//fetch(`http://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&appid=c5ac3bf1e2bd986188132643f307e82c`)
 
-  //function to search city via API
-  var formSubmitHandler = function (event) {
-    event.preventDefault();
-    
-    var city = cityInputEl.value.trim();
+//function to search city via API
+var formSubmitHandler = function (event) {
+  event.preventDefault();
 
-    if (city) {
-      //get weather via API if searched term is valid
-      getCityWeather(city);
-      console.log(city);
-      searchedCityNameEl.textContent = city;
-    } else {
-      //if user does not enter a correct city, or no city
-      // alert('Invalid - Please enter a city name')
-      //change to text content changing to incorrect
-      cityInputEl.placeholder= 'Error - no city name entered'
-    }
-  };
+  var city = cityInputEl.value.trim();
 
-  //functions
+  if (city) {
+    //get weather via API if searched term is valid
+    getCityWeather(city);
+    console.log(city);
+    searchedCityNameEl.textContent = city;
+  } else {
+    //if user does not enter a correct city, or no city
+    // alert('Invalid - Please enter a city name')
+    //change to text content changing to incorrect
+    cityInputEl.placeholder = 'Error - no city name entered'
+  }
+};
 
-  // function to take user input of city name and search it through the open weather API
-    //a - if incorrect city, display error message
-    //b - if correct city, pull data for city
+//functions
+
+// function to take user input of city name and search it through the open weather API
+//a - if incorrect city, display error message
+//b - if correct city, pull data for city
 
 var getCityWeather = function (city) {
   var apiURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=c5ac3bf1e2bd986188132643f307e82c'
 
-fetch(apiURL)
-  .then(function (response) {
-if (response.ok) {
-  response.json().then(function (data) {
-    console.log(data)
-    // displayWeather(data,city);
-  });
-} else {
-  alert('Error: ' + response.statusText);
-}
- })
-.catch(function (error) {
-  alert('Unable to search city at this time, please try again later');
-}
-);
+  fetch(apiURL)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          console.log(data)
+          // displayWeather(data,city);
+        });
+      } else {
+        alert('Error: ' + response.statusText);
+      }
+    })
+    .catch(function (error) {
+      alert('Unable to search city at this time, please try again later');
+    }
+    );
 };
 
-  //function to display weather for searched city into a container of info for city's weather on CURRENT DAY
-  //var displayWeather = function (){}
+//function to display weather for searched city into a container of info for city's weather on CURRENT DAY
+//var displayWeather = function (){}
 
-  //function to display 5 day forecast in container for 5 day forecast
+//function to display 5 day forecast in container for 5 day forecast
 
 //function to dynamically color the UV index depending on if conditions are favorable, moderate, or severe
 
-  // function to save previously searched cities in local storage which then shows current and forecast for these cities
+// function to save previously searched cities in local storage which then shows current and forecast for these cities
 
-  btnSearchCityEl.addEventListener('submit',  formSubmitHandler)
+btnSearchCityEl.addEventListener('submit', formSubmitHandler)
+
+  //main div function creation
+  //use bootstrap class to go to right of page
+
+//previous searches div
+//use boostrap classes to go to bottom left of page
+//for previous searches, I could have 7 buttons be generated already but have them hidden, as they are saved I can toggle classes to make them visible and store info in them
