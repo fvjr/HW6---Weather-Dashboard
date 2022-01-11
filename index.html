@@ -14,7 +14,7 @@
 <body>
 <header class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class= "display-9" id = "title"> Weather Dashboard</h1>
+    <h1 class= "display-9 " id = "title"> Weather Dashboard</h1>
     <p class="lead" id ="title-secondary">Before you head out, check the weather!</p>
   </div>
 </header>
@@ -22,13 +22,17 @@
 <div class = "search-container">
 <h2 id = "search-text"> Enter a city's name to search the weather</h2>
 <form class = "input-form-body" id = "input-form">
-<input name = "city" id = "city" type="text" class = "form-input"/><br>
-<button type="submit" class="btn btn-info">Search City</button>
+<input name = "city" id = "city" type="text" class = "form-input" placeholder="Enter city name"/><br>
+<button type="submit" class="btn btn-info search-city-button">Click to Search City</button>
 </form>
 </div>
 
 <div class ="city-weather">
-
+  <div class="col-12 col-md-8">
+    <h2 class="city-display">Here's the weather for <span id="searched-city-name"></span></h2>
+    <div id="searched-city-container" class="city-container"></div>
+  </div>
+</main>
 </div>
 
 <div class ="city-5-day-forecast">

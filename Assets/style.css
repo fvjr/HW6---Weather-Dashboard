@@ -13,6 +13,9 @@
 
 .jumbotron {
   height: 150px;
+  background-color: var(--dark);
+  color: var(--primary);
+  text-align: center;
 }
 
 #title {
@@ -33,4 +36,37 @@ body {
   color: var(--dark);
   line-height: 1.5;
   font-size: 16px;
+}
+
+.search-container {
+  margin-right: 20px;
+  padding: 20px;
+  clear: both;
+  float: left;
+  width: 32%;
+  height: 100%;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background-color: var(--dark-blue);
+  color: var(--primary);
+  text-align: center;
+}
+
+.form-input {
+  width:80%;
+  height:50px;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.search-city-button {
+background-color: var(--dark);
+border-color: var(--light-blue);
+width: 45%;
+height: 100%;
+margin-left:15px;
+}
+
+#searched-city-name {
+  color: var(--light-blue);
+  text-shadow: 1px 1px var(--dark-blue);
 }

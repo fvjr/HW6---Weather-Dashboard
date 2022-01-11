@@ -1,7 +1,6 @@
-var inputFormEl = document.querySelector('#input-form')
+var btnSearchCityEl = document.querySelector('#input-form')
 var cityInputEl = document.querySelector('#city')
-
-
+var searchedCityNameEl = document.querySelector('#searched-city-name')
 
 //open weather api
 //api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
@@ -32,10 +31,12 @@ fetch(`http://api.openweathermap.org/data/2.5/weather?q=philadelphia&appid=c5ac3
       //get weather via API if searched term is valid
       getCityWeather(city);
       console.log(city);
-      
+      searchedCityNameEl.textContent = city;
     } else {
       //if user does not enter a correct city, or no city
-      alert('Invalid - Please enter a city name')
+      // alert('Invalid - Please enter a city name')
+      //change to text content changing to incorrect
+      cityInputEl.placeholder= 'Error - no city name entered'
     }
   };
 
@@ -45,10 +46,33 @@ fetch(`http://api.openweathermap.org/data/2.5/weather?q=philadelphia&appid=c5ac3
     //a - if incorrect city, display error message
     //b - if correct city, pull data for city
 
+var getCityWeather = function (city) {
+  var apiURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=c5ac3bf1e2bd986188132643f307e82c'
+
+fetch(apiURL)
+  .then(function (response) {
+if (response.ok) {
+  response.json().then(function (data) {
+    console.log(data)
+    // displayWeather(data,city);
+  });
+} else {
+  alert('Error: ' + response.statusText);
+}
+ })
+.catch(function (error) {
+  alert('Unable to search city at this time, please try again later');
+}
+);
+};
+
   //function to display weather for searched city into a container of info for city's weather on CURRENT DAY
-  
+  //var displayWeather = function (){}
+
   //function to display 5 day forecast in container for 5 day forecast
 
 //function to dynamically color the UV index depending on if conditions are favorable, moderate, or severe
 
   // function to save previously searched cities in local storage which then shows current and forecast for these cities
+
+  btnSearchCityEl.addEventListener('submit',  formSubmitHandler)
