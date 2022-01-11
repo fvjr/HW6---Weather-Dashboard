@@ -1,4 +1,4 @@
-var btnSearchCityEl = document.querySelector('#input-form')
+var btnSearchCityEl = document.querySelector('#btn-search-city')
 var cityInputEl = document.querySelector('#city')
 var searchedCityNameEl = document.querySelector('#searched-city-name')
 
@@ -33,8 +33,9 @@ fetch(`http://api.openweathermap.org/data/2.5/weather?q=philadelphia&appid=c5ac3
 //fetch(`http://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&appid=c5ac3bf1e2bd986188132643f307e82c`)
 
 //function to search city via API
-var formSubmitHandler = function (event) {
+var btnSearchCity = function (event) {
   event.preventDefault();
+  
 
   var city = cityInputEl.value.trim();
 
@@ -42,7 +43,16 @@ var formSubmitHandler = function (event) {
     //get weather via API if searched term is valid
     getCityWeather(city);
     console.log(city);
-    searchedCityNameEl.textContent = city;
+    // currentCityName.textContent = data.name;
+    console.log(currentCityName)
+
+
+// var currentCityDate = document.querySelector('#current-city-date');
+// var currentCityIcon = document.querySelector('#current-city-icon');
+// var currentCityTemperature = document.querySelector('#current-city-temperature');
+// var currentCityHumidity = document.querySelector('#current-city-humidity');
+// var currentCityWindspeed = document.querySelector('#current-city-windspeed');
+// var currentCityUVIndex = document.querySelector('#current-city-uv-index');
   } else {
     //if user does not enter a correct city, or no city
     // alert('Invalid - Please enter a city name')
@@ -66,6 +76,22 @@ var getCityWeather = function (city) {
         response.json().then(function (data) {
           console.log(data)
           // displayWeather(data,city);
+    currentCityName.textContent = data.name;
+//START
+// currentCityDate.textContent = 
+// currentCityIcon.textContent = data.weather.icon
+currentCityTemperature.textContent = 'Temp: ' + calvinToFarenheit(data.main.temp) + ' °F'
+
+
+//(266.38K − 273.15) × 9/5 + 32
+// Fahrenheit	℉=((K-273.15)*1.8)+32
+var currentCityHumidity = document.querySelector('#current-city-humidity');
+var currentCityWindspeed = document.querySelector('#current-city-windspeed');
+var currentCityUVIndex = document.querySelector('#current-city-uv-index');
+
+//fin
+
+          
         });
       } else {
         alert('Error: ' + response.statusText);
@@ -86,7 +112,7 @@ var getCityWeather = function (city) {
 
 // function to save previously searched cities in local storage which then shows current and forecast for these cities
 
-btnSearchCityEl.addEventListener('submit', formSubmitHandler)
+btnSearchCityEl.addEventListener('submit', btnSearchCity)
 
   //main div function creation
   //use bootstrap class to go to right of page
@@ -94,3 +120,12 @@ btnSearchCityEl.addEventListener('submit', formSubmitHandler)
 //previous searches div
 //use boostrap classes to go to bottom left of page
 //for previous searches, I could have 7 buttons be generated already but have them hidden, as they are saved I can toggle classes to make them visible and store info in them
+
+var calvinToFarenheit = function(num) {
+  // Fahrenheit	℉=((K-273.15)*1.8)+32
+  var newTemp = (((num-273.15)*1.8)+32).toFixed(2)
+  console.log(newTemp);
+  return newTemp
+}
+
+calvinToFarenheit(266.38);
