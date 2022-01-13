@@ -79,9 +79,9 @@ var getCityWeather = function (city) {
           currentCityTemperature.textContent = 'Temp: ' + calvinToFarenheit(data.main.temp) + ' °F';
           currentCityHumidity.textContent = 'Humidity: ' + data.main.humidity + '%';
           currentCityWindspeed.textContent = 'Windspeed: ' + data.wind.speed + ' MPH';
-          let uvi = findUVIndex(data.coord.lat, data.coord.lon)
-          console.log(uvi);
-          currentCityUVIndex.textContent = 'UV Index: ' + uvi;
+          var lat = data.coord.lat;
+          var lon = data.coord.lon;
+          console.log(data.coord.lat, data.coord.lon);findUVIndex(data.coord.lat, data.coord.lon);
 
           //1642040196
           //fin
@@ -122,26 +122,25 @@ var calvinToFarenheit = function (num) {
   return newTemp
 }
 
-
-
-
 // function to get UV index
 var findUVIndex = function (lat, lon) {
+  var UVIndex;
   var UVIndexURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude=hourly,daily&appid=c5ac3bf1e2bd986188132643f307e82c';
   fetch(UVIndexURL)
     .then(function (response) {
-      if (response.ok) {
+      // if (response.ok) {
         response.json().then(function (data) {
           console.log(data)
-          var UVIndex = data.current.uvi;
+          UVIndex = data.current.uvi;
           console.log(UVIndex)
-         return UVIndex
-        }
+          currentCityUVIndex.textContent = 'UV Index: ' + UVIndex;
+         }
         )
-      }
-     })
-}
+    //  }
+      })
+return UVIndex}
 
+console.log(findUVIndex(55.7522, 37.6156));
 
 //testing of create Date function found on w3 schools
 // function createDate(dt) {
