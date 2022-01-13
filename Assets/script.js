@@ -124,21 +124,29 @@ var calvinToFarenheit = function (num) {
 
 // function to get UV index
 var findUVIndex = function (lat, lon) {
-  var UVIndex;
+  var uvindex;
   var UVIndexURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude=hourly,daily&appid=c5ac3bf1e2bd986188132643f307e82c';
   fetch(UVIndexURL)
     .then(function (response) {
       // if (response.ok) {
         response.json().then(function (data) {
           console.log(data)
-          UVIndex = data.current.uvi;
-          console.log(UVIndex)
-          currentCityUVIndex.textContent = 'UV Index: ' + UVIndex;
+          uvindex = data.current.uvi;
+          console.log(uvindex)
+          currentCityUVIndex.textContent = 'UV Index: ' + uvindex;
+          //write logic for color-coding UV-Index
+          if (uvindex < 3) {
+            currentCityUVIndex.classList.add('.uvindex-favorable');
+          } else if (uvindex > 3 && uvindex <6) {
+            currentCityUVIndex.classList.add('uvindex-moderate');
+          } else {
+            currentCityUVIndex.classList.add('uvindex-severe');
+          }
          }
         )
     //  }
       })
-return UVIndex}
+return uvindex}
 
 console.log(findUVIndex(55.7522, 37.6156));
 

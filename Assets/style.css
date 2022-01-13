@@ -103,6 +103,21 @@ margin-left: 20px;
   margin-left: 50px;
 }
 
+.uvindex-favorable{
+  background-color: green;
+  width: 40%;
+}
+
+.uvindex-moderate{
+  background-color: yellow;
+  width: 40%;
+}
+
+.uvindex-severe{
+  background-color: red;
+  width: 40%;
+}
+
 #previous-search-tip {
   text-decoration: underline black;
 }
