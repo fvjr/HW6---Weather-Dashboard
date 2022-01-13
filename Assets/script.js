@@ -79,15 +79,19 @@ var getCityWeather = function (city) {
     currentCityName.textContent = data.name;
 //START
 // currentCityDate.textContent = 
-// currentCityIcon.textContent = data.weather.icon
-currentCityTemperature.textContent = 'Temp: ' + calvinToFarenheit(data.main.temp) + ' °F'
 
 
-//(266.38K − 273.15) × 9/5 + 32
-// Fahrenheit	℉=((K-273.15)*1.8)+32
-var currentCityHumidity = document.querySelector('#current-city-humidity');
-var currentCityWindspeed = document.querySelector('#current-city-windspeed');
-var currentCityUVIndex = document.querySelector('#current-city-uv-index');
+// // <img src = 'http://openweathermap.org/img/wn/'></div>
+// currentCityIcon.setAttribute('src', 'http://openweathermap.org/img/wn/' + icon);
+// }
+
+console.log(data.weather[0].icon);
+currentCityIcon.src = 'http://openweathermap.org/img/wn/' + data.weather[0].icon + '.png';
+console.log(currentCityIcon.src);
+currentCityTemperature.textContent = 'Temp: ' + calvinToFarenheit(data.main.temp) + ' °F';
+currentCityHumidity.textContent = 'Humidity: ' + data.main.humidity + '%';
+currentCityWindspeed.textContent = 'Windspeed: ' + data.wind.speed + ' MPH';
+// var currentCityUVIndex = document.querySelector('#current-city-uv-index');
 
 //fin
 
@@ -129,3 +133,10 @@ var calvinToFarenheit = function(num) {
 }
 
 calvinToFarenheit(266.38);
+
+// var getWeatherIcon = function (icon) {
+// // <img src = 'http://openweathermap.org/img/wn/'></div>
+// currentCityIcon.setAttribute('src', 'http://openweathermap.org/img/wn/' + icon);
+// }
+
+// currentCityIcon.getWeatherIcon('01d.png')
