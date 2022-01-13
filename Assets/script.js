@@ -83,7 +83,9 @@ var getCityWeather = function (city) {
           currentCityHumidity.textContent = 'Humidity: ' + data.main.humidity + '%';
           currentCityWindspeed.textContent = 'Windspeed: ' + data.wind.speed + ' MPH';
           // var currentCityUVIndex = document.querySelector('#current-city-uv-index');
-
+          var date = data.dt;
+          console.log(date.toDateString());
+          //1642040196
           //fin
 
 
@@ -147,3 +149,20 @@ var calvinToFarenheit = function (num) {
 
 // findUVIndex(50, 123)
 // console.log(findUVIndex(50,123))
+
+
+//testing of create Date function found on w3 schools
+function createDate(dt) {
+  var day = new Date(dt * 1000);
+
+      return day.toLocaleString("en-us"); // 
+  }
+
+
+console.log(createDate(1642040868, 'long'));
+
+
+let date = new Date(Date.UTC(2022, 12, 2));
+console.log(date.toLocaleString());
+
+//1642041046
