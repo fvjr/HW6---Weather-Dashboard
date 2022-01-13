@@ -35,7 +35,6 @@ var btnSearchCity = function (event) {
     getCityWeather(city);
     console.log(city);
     // currentCityName.textContent = data.name;
-    console.log(currentCityName)
 
 
     // var currentCityDate = document.querySelector('#current-city-date');
@@ -76,15 +75,14 @@ var getCityWeather = function (city) {
           // currentCityIcon.setAttribute('src', 'http://openweathermap.org/img/wn/' + icon);
           // }
 
-          console.log(data.weather[0].icon);
           currentCityIcon.src = 'http://openweathermap.org/img/wn/' + data.weather[0].icon + '.png';
-          console.log(currentCityIcon.src);
           currentCityTemperature.textContent = 'Temp: ' + calvinToFarenheit(data.main.temp) + ' °F';
           currentCityHumidity.textContent = 'Humidity: ' + data.main.humidity + '%';
           currentCityWindspeed.textContent = 'Windspeed: ' + data.wind.speed + ' MPH';
-          // var currentCityUVIndex = document.querySelector('#current-city-uv-index');
-          var date = data.dt;
-          console.log(date.toDateString());
+          let uvi = findUVIndex(data.coord.lat, data.coord.lon)
+          console.log(uvi);
+          currentCityUVIndex.textContent = 'UV Index: ' + uvi;
+
           //1642040196
           //fin
 
@@ -121,48 +119,42 @@ btnSearchCityEl.addEventListener('submit', btnSearchCity)
 var calvinToFarenheit = function (num) {
   // Fahrenheit	℉=((K-273.15)*1.8)+32
   var newTemp = (((num - 273.15) * 1.8) + 32).toFixed(2)
-  console.log(newTemp);
   return newTemp
 }
 
 
 
 
-//function to get UV index
-// var findUVIndex = function (lat, lon) {
-//   var UVIndexURL = 'https://api.openweathermap.org/data/2.5/onecall?' + latLon + '&exclude=hourly,daily&appid=c5ac3bf1e2bd986188132643f307e82c'
-//   fetch(UVIndexURL)
-//     .then(function (response) {
-//       if (response.ok) {
-//         response.json().then(function (data) {
-//           console.log(data)
-
-
-//           var latLon;
-//           latLon.textContent = lat + lon;
-          
-//         }
-//         )
-//       }
-//     })
-// return latLon}
-
-// findUVIndex(50, 123)
-// console.log(findUVIndex(50,123))
+// function to get UV index
+var findUVIndex = function (lat, lon) {
+  var UVIndexURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude=hourly,daily&appid=c5ac3bf1e2bd986188132643f307e82c';
+  fetch(UVIndexURL)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          console.log(data)
+          var UVIndex = data.current.uvi;
+          console.log(UVIndex)
+         return UVIndex
+        }
+        )
+      }
+     })
+}
 
 
 //testing of create Date function found on w3 schools
-function createDate(dt) {
-  var day = new Date(dt * 1000);
+// function createDate(dt) {
+//   var day = new Date(dt * 1000);
 
-      return day.toLocaleString("en-us"); // 
-  }
-
-
-console.log(createDate(1642040868, 'long'));
+//       return day.toLocaleString("en-us"); //
+//   }
 
 
-let date = new Date(Date.UTC(2022, 12, 2));
-console.log(date.toLocaleString());
+// console.log(createDate(1642040868, 'long'));
+
+
+// let date = new Date(Date.UTC(2022, 12, 2));
+// console.log(date.toLocaleString());
 
 //1642041046
