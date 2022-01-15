@@ -74,7 +74,7 @@ margin-bottom: 25px;
 }
 
 .current-city-container {
-  font-size: 30px;
+  font-size: 25px;
   width: auto;
   border-radius:25px;
   border: solid black;
@@ -103,23 +103,29 @@ margin-left: 20px;
   margin-left: 50px;
 }
 
+.hide {
+  display:none;
+}
+
 .uvindex-favorable{
   background-color: green;
-  width: 40%;
+  width: 30%;
 }
 
 .uvindex-moderate{
   background-color: yellow;
-  width: 40%;
+  width: 30%;
 }
 
 .uvindex-severe{
   background-color: red;
-  width: 40%;
+  width: 30%;
 }
 
 #previous-search-tip {
   text-decoration: underline black;
+  font-size: 20px;
+  background-color: var(--dark);
 }
 
 .btn-secondary {

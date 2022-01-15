@@ -1,8 +1,10 @@
+//moment
+var date = moment();
+//acess elements by DOM
 var btnSearchCityEl = document.querySelector('#btn-search-city')
 var cityInputEl = document.querySelector('#city')
 var searchedCityNameEl = document.querySelector('#searched-city-name')
-
-//access these via dom
+var currentCityContainer = document.querySelector('#current-city-weather');
 var currentCityName = document.querySelector('#current-city-name');
 var currentCityDate = document.querySelector('#current-city-date');
 var currentCityIcon = document.querySelector('#current-city-icon');
@@ -10,7 +12,6 @@ var currentCityTemperature = document.querySelector('#current-city-temperature')
 var currentCityHumidity = document.querySelector('#current-city-humidity');
 var currentCityWindspeed = document.querySelector('#current-city-windspeed');
 var currentCityUVIndex = document.querySelector('#current-city-uv-index');
-
 
 //open weather api
 //api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
@@ -31,62 +32,31 @@ var btnSearchCity = function (event) {
   event.preventDefault();
   var city = cityInputEl.value.trim();
   if (city) {
-    //get weather via API if searched term is valid
     getCityWeather(city);
     console.log(city);
-    // currentCityName.textContent = data.name;
-
-
-    // var currentCityDate = document.querySelector('#current-city-date');
-    // var currentCityIcon = document.querySelector('#current-city-icon');
-    // var currentCityTemperature = document.querySelector('#current-city-temperature');
-    // var currentCityHumidity = document.querySelector('#current-city-humidity');
-    // var currentCityWindspeed = document.querySelector('#current-city-windspeed');
-    // var currentCityUVIndex = document.querySelector('#current-city-uv-index');
   } else {
-    //if user does not enter a correct city, or no city
-    // alert('Invalid - Please enter a city name')
-    //change to text content changing to incorrect
     cityInputEl.placeholder = 'Error - no city name entered'
   }
 };
 
-//functions
-
 // function to take user input of city name and search it through the open weather API
-//a - if incorrect city, display error message
-//b - if correct city, pull data for city
-
 var getCityWeather = function (city) {
-  var apiURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=c5ac3bf1e2bd986188132643f307e82c'
-
+  var apiURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=c5ac3bf1e2bd986188132643f307e82c'
   fetch(apiURL)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
           console.log(data)
-          // displayWeather(data,city);
-          currentCityName.textContent = data.name;
           //START
-          // currentCityDate.textContent = 
-
-
-          // // <img src = 'http://openweathermap.org/img/wn/'></div>
-          // currentCityIcon.setAttribute('src', 'http://openweathermap.org/img/wn/' + icon);
-          // }
-
+          currentCityName.textContent = data.name;
+          currentCityDate.textContent = date.add(10, 'days').calendar();
+          currentCityIcon.classList.remove("hide");
           currentCityIcon.src = 'http://openweathermap.org/img/wn/' + data.weather[0].icon + '.png';
-          currentCityTemperature.textContent = 'Temp: ' + calvinToFarenheit(data.main.temp) + ' °F';
+          currentCityName.append(currentCityIcon);
+          currentCityTemperature.textContent = 'Temp: ' + data.main.temp + ' °F';
           currentCityHumidity.textContent = 'Humidity: ' + data.main.humidity + '%';
           currentCityWindspeed.textContent = 'Windspeed: ' + data.wind.speed + ' MPH';
-          var lat = data.coord.lat;
-          var lon = data.coord.lon;
-          console.log(data.coord.lat, data.coord.lon);findUVIndex(data.coord.lat, data.coord.lon);
-
-          //1642040196
-          //fin
-
-
+          console.log(data.coord.lat, data.coord.lon); findUVIndex(data.coord.lat, data.coord.lon);
         });
       } else {
         alert('Error: ' + response.statusText);
@@ -129,39 +99,23 @@ var findUVIndex = function (lat, lon) {
   fetch(UVIndexURL)
     .then(function (response) {
       // if (response.ok) {
-        response.json().then(function (data) {
-          console.log(data)
-          uvindex = data.current.uvi;
-          console.log(uvindex)
-          currentCityUVIndex.textContent = 'UV Index: ' + uvindex;
-          //write logic for color-coding UV-Index
-          if (uvindex < 3) {
-            currentCityUVIndex.classList.add('.uvindex-favorable');
-          } else if (uvindex > 3 && uvindex <6) {
-            currentCityUVIndex.classList.add('uvindex-moderate');
-          } else {
-            currentCityUVIndex.classList.add('uvindex-severe');
-          }
-         }
-        )
-    //  }
-      })
-return uvindex}
+      response.json().then(function (data) {
+        console.log(data)
+        uvindex = data.current.uvi;
+        console.log(uvindex)
+        currentCityUVIndex.textContent = 'UV Index: ' + uvindex;
+        //write logic for color-coding UV-Index
+        if (uvindex < 3) {
+          currentCityUVIndex.classList.add('.uvindex-favorable');
+        } else if (uvindex > 3 && uvindex < 6) {
+          currentCityUVIndex.classList.add('uvindex-moderate');
+        } else {
+          currentCityUVIndex.classList.add('uvindex-severe');
+        }
+      }
+      )
+      //  }
+    })
+  return uvindex
+}
 
-console.log(findUVIndex(55.7522, 37.6156));
-
-//testing of create Date function found on w3 schools
-// function createDate(dt) {
-//   var day = new Date(dt * 1000);
-
-//       return day.toLocaleString("en-us"); //
-//   }
-
-
-// console.log(createDate(1642040868, 'long'));
-
-
-// let date = new Date(Date.UTC(2022, 12, 2));
-// console.log(date.toLocaleString());
-
-//1642041046
