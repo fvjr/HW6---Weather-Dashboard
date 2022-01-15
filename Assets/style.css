@@ -136,7 +136,6 @@ text-align: center;
 }
 
 .five-day-forecast {
-  /* display:inline-block; */
   text-align: center;
 }
 
@@ -145,24 +144,9 @@ text-align: center;
   margin-right: 50px;
 }
 
-.card {
-  width: 20px;
-  background-color: var(--dark);
-}
-
 .forecast-card {
-  font-size: 16px;
-  display: inline-block;
-  padding: 16px;
-  margin: 10px;
-  background-color: var(--dark-blue);
-  color:var(--primary)
+  background-color: var(--dark);
+  color: var(--primary);
+  text-align: center;
 }
 
-.list-group-item {
-  background-color: var(--dark);
-}
-.card-header {
-  background-color: var(--dark-blue);
-  color:var(--primary);
-}

@@ -13,6 +13,7 @@ var currentCityHumidity = document.querySelector('#current-city-humidity');
 var currentCityWindspeed = document.querySelector('#current-city-windspeed');
 var currentCityUVIndex = document.querySelector('#current-city-uv-index');
 var forecastContainer = document.querySelector('#city-5-day-forecast-container')
+var dayArray = [];
 
 //open weather api
 //api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
@@ -110,43 +111,47 @@ var getForecast = function (lat,lon) {
 
 // .src = 'http://openweathermap.org/img/wn/' + data.daily[i].weather.icon + '.png';
 
-var createForecastCards = function (date, imgSource, temperature, windSpeed, humidity) {
-  var forecastCard = document.createElement("div");
-  forecastCard.classList.add("card");
-  forecastCard.classList.add("forecast-card");
-  forecastCard.setAttribute('style', 'width: 18rem');
-  forecastContainer.append(forecastCard);
-  var foreCastCardUL = document.createElement('ul');
-  foreCastCardUL.classList.add("list-group");
-  foreCastCardUL.classList.add("list-group-flush")
-  forecastCard.append(foreCastCardUL)
-  var forecastCardDate = document.createElement("li");
-  forecastCardDate.textContent = 'date' + date;
-  forecastCardDate.classList.add("list-group-item");
-  foreCastCardUL.append(forecastCardDate);
-  var forecastCardWeatherIcon = document.createElement("li");
-  forecastCardWeatherIcon.src = 'http://openweathermap.org/img/wn/' + imgSource + '.png';
-  forecastCardWeatherIcon.classList.add('list-group-item');
-  foreCastCardUL.append(forecastCardWeatherIcon);
-  var forecastCardTemperature = document.createElement("li");
-  forecastCardTemperature.textContent = 'Temperature: ' + temperature + 'F°';
-  forecastCardTemperature.classList.add('list-group-item');
-  foreCastCardUL.append(forecastCardTemperature);
-  var forecastCardWindSpeed = document.createElement("li");
-  forecastCardWindSpeed.textContent = 'Windspeed: ' + windSpeed + 'MPH';
-  forecastCardWindSpeed.classList.add('list-group-item');
-  foreCastCardUL.append(forecastCardWindSpeed);
-  var forecastCardHumidity = document.createElement("li");
-  forecastCardHumidity.textContent = 'Humidity: ' + humidity + '%';
-  foreCastCardUL.append(forecastCardHumidity);
-  forecastCardHumidity.classList.add('list-group-item');
-}
+// var createForecastCards = function (date, imgSource, temperature, windSpeed, humidity) {
+//   var forecastCard = document.createElement("div");
+//   forecastCard.classList.add("card");
+//   forecastCard.classList.add("forecast-card");
+//   forecastCard.setAttribute('style', 'width: 18rem');
+//   forecastContainer.append(forecastCard);
+//   var foreCastCardUL = document.createElement('ul');
+//   foreCastCardUL.classList.add("list-group");
+//   foreCastCardUL.classList.add("list-group-flush")
+//   forecastCard.append(foreCastCardUL)
+//   var forecastCardDate = document.createElement("li");
+//   forecastCardDate.textContent = 'date' + date;
+//   forecastCardDate.classList.add("list-group-item");
+//   foreCastCardUL.append(forecastCardDate);
+//   var forecastCardWeatherIcon = document.createElement("li");
+//   forecastCardWeatherIcon.src = 'http://openweathermap.org/img/wn/' + imgSource + '.png';
+//   forecastCardWeatherIcon.classList.add('list-group-item');
+//   foreCastCardUL.append(forecastCardWeatherIcon);
+//   var forecastCardTemperature = document.createElement("li");
+//   forecastCardTemperature.textContent = 'Temperature: ' + temperature + 'F°';
+//   forecastCardTemperature.classList.add('list-group-item');
+//   foreCastCardUL.append(forecastCardTemperature);
+//   var forecastCardWindSpeed = document.createElement("li");
+//   forecastCardWindSpeed.textContent = 'Windspeed: ' + windSpeed + 'MPH';
+//   forecastCardWindSpeed.classList.add('list-group-item');
+//   foreCastCardUL.append(forecastCardWindSpeed);
+//   var forecastCardHumidity = document.createElement("li");
+//   forecastCardHumidity.textContent = 'Humidity: ' + humidity + '%';
+//   foreCastCardUL.append(forecastCardHumidity);
+//   forecastCardHumidity.classList.add('list-group-item');
+// }
 //create container/card
 //date
 //weather icon
 //temperature
 //wind-speed
 //humidity
+
+// var clearCards = function (){
+
+// }
 
 // createForecastCards();
 // createForecastCards();

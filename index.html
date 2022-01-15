@@ -12,109 +12,122 @@
 </head>
 
 <body>
-<header class="jumbotron jumbotron-fluid">
+  <header class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-9 " id="title"> Weather Dashboard</h1>
+      <p class="lead" id="title-secondary">Before you head out, check the weather!</p>
+    </div>
+  </header>
+
+  <div class="search-container">
+    <h2 id="search-text"> Enter a city's name to search the weather</h2>
+    <form class="input-form-body" id="btn-search-city">
+      <input name="city" id="city" type="text" class="form-input" placeholder="Moscow" /><br>
+      <button type="submit" class="btn btn-info search-city-button btn-block" id=>Click to Search City</button>
+    </form>
+    <div class='previous-city-container col'>
+      <p id='previous-search-tip'> Want to check out a city you've already searched? Look below</p>
+      <button type="button" class="btn btn-secondary btn-lg btn-block">Previous City </button>
+      <button type="button" class="btn btn-secondary btn-lg btn-block">Previous City </button>
+      <button type="button" class="btn btn-secondary btn-lg btn-block">Previous City </button>
+      <button type="button" class="btn btn-secondary btn-lg btn-block">Previous City </button>
+      <button type="button" class="btn btn-secondary btn-lg btn-block">Previous City </button>
+      <button type="button" class="btn btn-secondary btn-lg btn-block">Previous City </button>
+      <button type="button" class="btn btn-secondary btn-lg btn-block">Previous City </button>
+    </div>
+  </div>
+
+  <div class="current-city-weather container">
+    <div class="row row-cols-1">
+      <div id="searched-city-container container" class="current-city-container col">
+        <div class="row" id="current-city-name"></div>
+        <div class="row" id="current-city-date"></div>
+        <div class="row "> <img class="hide" id="current-city-icon" src=''
+            alt='weather icon depecting current weather conditions for selected city'></div>
+        <div class="row" id="current-city-temperature"></div>
+        <div class="row" id="current-city-humidity"></div>
+        <div class="row" id="current-city-windspeed"></div>
+        <div class="row uvindex-favorable" id="current-city-uv-index"></div>
+      </div>
+    </div>
+    </main>
+  </div>
+
   <div class="container">
-    <h1 class= "display-9 " id = "title"> Weather Dashboard</h1>
-    <p class="lead" id ="title-secondary">Before you head out, check the weather!</p>
-  </div>
-</header>
-
-<div class = "search-container">
-<h2 id = "search-text"> Enter a city's name to search the weather</h2>
-<form class = "input-form-body" id = "btn-search-city">
-<input name = "city" id = "city" type="text" class = "form-input" placeholder="Moscow"/><br>
-<button type="submit" class="btn btn-info search-city-button btn-block" id = >Click to Search City</button>
-</form>
-<div class = 'previous-city-container col'>
-<p id = 'previous-search-tip'> Want to check out a city you've already searched? Look below</p>
-<button type="button" class="btn btn-secondary btn-lg btn-block">Previous City </button>
-<button type="button" class="btn btn-secondary btn-lg btn-block">Previous City </button>
-<button type="button" class="btn btn-secondary btn-lg btn-block">Previous City </button>
-<button type="button" class="btn btn-secondary btn-lg btn-block">Previous City </button>
-<button type="button" class="btn btn-secondary btn-lg btn-block">Previous City </button>
-<button type="button" class="btn btn-secondary btn-lg btn-block">Previous City </button>
-<button type="button" class="btn btn-secondary btn-lg btn-block">Previous City </button>
-</div>
-</div>
-
-<div class ="current-city-weather container">
-  <div class="row row-cols-1">
-    <div id="searched-city-container container" class="current-city-container col">
-      <div class="row" id = "current-city-name"></div>
-      <div class="row" id = "current-city-date"></div>
-      <div class="row "> <img class = "hide" id = "current-city-icon" src = '' alt = 'weather icon depecting current weather conditions for selected city'></div>
-      <div class="row" id = "current-city-temperature"></div>
-      <div class="row" id = "current-city-humidity"></div>
-      <div class="row" id = "current-city-windspeed"></div>
-      <div class="row uvindex-favorable" id = "current-city-uv-index"></div>
-    </div>
-  </div>
-</main>
-</div>
-
-<div id="city-5-day-forecast-container" class= "container">
- <h2 id = 'forecast-header'> 5 Day Forecast:</h2>
-  <!-- <div class="card five-day-forecast" style="width: 18rem;">
-    <div class="card-header">
-      Date
-    </div>
+    <h2>5-Day Forecast:</h2>
+    <!-- Content here -->
+<div class ="row">
+<!-- card 1 -->
+<div class="col ">
+  <div class="card" style="width: 10rem;">
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">Weather Icon</li>
-      <li class="list-group-item">Temperature</li>
-      <li class="list-group-item">Wind Speed</li>
-      <li class="list-group-item">Humidity</li>
+      <li class="list-group-item forecast-card">Date</li>
+      <li class="list-group-item forecast-card">Weather Icon</li>
+      <li class="list-group-item forecast-card">Temperature</li>
+      <li class="list-group-item forecast-card">Wind Speed</li>
+      <li class="list-group-item forecast-card">Humidity</li>
     </ul>
   </div>
-  <div class="card five-day-forecast" style="width: 18rem;">
-    <div class="card-header">
-      Date
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Weather Icon</li>
-      <li class="list-group-item">Temperature</li>
-      <li class="list-group-item">Wind Speed</li>
-      <li class="list-group-item">Humidity</li>
-    </ul>
-  </div>
-  <div class="card five-day-forecast" style="width: 18rem;">
-    <div class="card-header">
-      Date
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Weather Icon</li>
-      <li class="list-group-item">Temperature</li>
-      <li class="list-group-item">Wind Speed</li>
-      <li class="list-group-item">Humidity</li>
-    </ul>
-  </div>
-  <div class="card five-day-forecast" style="width: 18rem;">
-    <div class="card-header">
-      Date
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Weather Icon</li>
-      <li class="list-group-item">Temperature</li>
-      <li class="list-group-item">Wind Speed</li>
-      <li class="list-group-item">Humidity</li>
-    </ul>
-  </div>
-  <div class="card five-day-forecast" style="width: 18rem;">
-    <div class="card-header">
-      Date
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Weather Icon</li>
-      <li class="list-group-item">Temperature</li>
-      <li class="list-group-item">Wind Speed</li>
-      <li class="list-group-item">Humidity</li>
-    </ul>
-  </div>  -->
 </div>
-
-<div class = "previously-searched-cities">
+<!-- card 2 -->
+<div class="col ">
+  <div class="card" style="width: 10rem;">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item forecast-card">Date</li>
+      <li class="list-group-item forecast-card">Weather Icon</li>
+      <li class="list-group-item forecast-card">Temperature</li>
+      <li class="list-group-item forecast-card">Wind Speed</li>
+      <li class="list-group-item forecast-card">Humidity</li>
+    </ul>
+  </div>
+</div>
+<!-- card 3 -->
+  <div class="col ">
+    <div class="card" style="width: 10rem;">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item forecast-card">Date</li>
+        <li class="list-group-item forecast-card">Weather Icon</li>
+        <li class="list-group-item forecast-card">Temperature</li>
+        <li class="list-group-item forecast-card">Wind Speed</li>
+        <li class="list-group-item forecast-card">Humidity</li>
+      </ul>
+    </div>
+  </div>
+<!-- card 4 -->
+<div class="col ">
+  <div class="card" style="width: 10rem;">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item forecast-card">Date</li>
+      <li class="list-group-item forecast-card">Weather Icon</li>
+      <li class="list-group-item forecast-card">Temperature</li>
+      <li class="list-group-item forecast-card">Wind Speed</li>
+      <li class="list-group-item forecast-card">Humidity</li>
+    </ul>
+  </div>
+</div>
+<!-- card 5 -->
+<div class="col ">
+  <div class="card" style="width: 10rem;">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item forecast-card">Date</li>
+      <li class="list-group-item forecast-card">Weather Icon</li>
+      <li class="list-group-item forecast-card">Temperature</li>
+      <li class="list-group-item forecast-card">Wind Speed</li>
+      <li class="list-group-item forecast-card">Humidity</li>
+    </ul>
+  </div>
+</div>
+  
 
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  </div>
+
+  <div class="previously-searched-cities">
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+    integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="Assets/script.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
