@@ -15,6 +15,49 @@ var currentCityUVIndex = document.querySelector('#current-city-uv-index');
 var forecastContainer = document.querySelector('#city-5-day-forecast-container')
 var dayArray = [];
 
+var cardOne = [
+  cardOneDate =  document.querySelector('#card-1-date'),
+  cardOneWeatherIcon =  document.querySelector('#card-1-weather-icon'),
+  cardOneTemperature =  document.querySelector('#card-1-temperature'),
+  cardOneWindSpeed= document.querySelector('#card-1-wind-speed'),
+  cardOneHumidity= document.querySelector('#card-1-humidity'),
+]
+
+var cardTwo = [
+  cardTwoDate =  document.querySelector('#card-2-date'),
+  cardTwoWeatherIcon =  document.querySelector('#card-2-weather-icon'),
+  cardTwoTemperature =  document.querySelector('#card-2-temperature'),
+  cardTwoWindSpeed= document.querySelector('#card-2-wind-speed'),
+  cardTwoHumidity= document.querySelector('#card-2-humidity'),
+]
+
+var cardThree = [
+  cardThreeDate =  document.querySelector('#card-3-date'),
+  cardThreeWeatherIcon =  document.querySelector('#card-3-weather-icon'),
+  cardThreeTemperature =  document.querySelector('#card-3-temperature'),
+  cardThreeWindSpeed= document.querySelector('#card-3-wind-speed'),
+  cardThreeHumidity= document.querySelector('#card-3-humidity'),
+]
+
+var cardFour = [
+  cardFourDate =  document.querySelector('#card-4-date'),
+  cardFourWeatherIcon =  document.querySelector('#card-4-weather-icon'),
+  cardFourTemperature =  document.querySelector('#card-4-temperature'),
+  cardFourWindSpeed= document.querySelector('#card-4-wind-speed'),
+  cardFourHumidity= document.querySelector('#card-4-humidity'),
+]
+
+var cardFive = [
+  cardFiveDate =  document.querySelector('#card-5-date'),
+  cardFiveWeatherIcon =  document.querySelector('#card-5-weather-icon'),
+  cardFiveTemperature =  document.querySelector('#card-5-temperature'),
+  cardFiveWindSpeed= document.querySelector('#card-5-wind-speed'),
+  cardFiveHumidity= document.querySelector('#card-5-humidity'),
+]
+
+
+
+
 //open weather api
 //api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
 
@@ -79,8 +122,11 @@ var getForecast = function (lat,lon) {
           console.log(response)
           console.log(data)
           console.log(data.daily[0].weather[0].icon)
-          for (let i = 0; i < 5; i++){
-          createForecastCards(data.daily[i].dt, data.daily[i].weather[0].icon, data.daily[i].temp.max, data.daily[i].wind_speed, data.daily[i].humidity);}
+          makeForecastCardOne(data.daily[1].dt, data.daily[1].weather[0].icon, data.daily[1].temp.day, data.daily[1].wind_speed, data.daily[1].humidity);
+          makeForecastCardTwo(data.daily[2].dt, data.daily[2].weather[0].icon, data.daily[2].temp.day, data.daily[2].wind_speed, data.daily[2].humidity)
+          makeForecastCardThree(data.daily[3].dt, data.daily[3].weather[0].icon, data.daily[3].temp.day, data.daily[3].wind_speed, data.daily[3].humidity)
+          makeForecastCardFour(data.daily[4].dt, data.daily[4].weather[0].icon, data.daily[4].temp.day, data.daily[4].wind_speed, data.daily[4].humidity)
+          makeForecastCardFive(data.daily[5].dt, data.daily[5].weather[0].icon, data.daily[5].temp.day, data.daily[5].wind_speed, data.daily[5].humidity)
         });
       } else {
         alert('Error: ' + response.statusText);
@@ -211,3 +257,47 @@ var findUVIndex = function (lat, lon) {
 //use moment for time
 //moment documntation - in for loop add one day 
 //local storage class video helpful 
+
+
+var makeForecastCardOne = function (date, imgSource, temperature, windSpeed, humidity) {
+  cardOneDate.textContent = 'DATE' + date;
+  cardOneWeatherIcon.src = 'http://openweathermap.org/img/wn/' + imgSource + '.png';
+  cardOneTemperature.textContent = 'Temperature: ' + temperature + '°F' ;
+  cardOneWindSpeed.textContent = 'Wind: ' + windSpeed + ' MPH';
+  cardOneHumidity.textContent = 'Humidity: ' + humidity + '%';
+}
+
+var makeForecastCardTwo = function (date, imgSource, temperature, windSpeed, humidity) {
+  cardTwoDate.textContent = 'DATE' + date;
+  cardTwoWeatherIcon.src = 'http://openweathermap.org/img/wn/' + imgSource + '.png';
+  cardTwoTemperature.textContent = 'Temperature: ' + temperature + '°F' ;
+  cardTwoWindSpeed.textContent = 'Wind: ' + windSpeed + ' MPH';
+  cardTwoHumidity.textContent = 'Humidity: ' + humidity + '%';
+}
+
+var makeForecastCardThree = function (date, imgSource, temperature, windSpeed, humidity) {
+  cardThreeDate.textContent = 'DATE' + date;
+  cardThreeWeatherIcon.src = 'http://openweathermap.org/img/wn/' + imgSource + '.png';
+  cardThreeTemperature.textContent = 'Temperature: ' + temperature + '°F' ;
+  cardThreeWindSpeed.textContent = 'Wind: ' + windSpeed + ' MPH';
+  cardThreeHumidity.textContent = 'Humidity: ' + humidity + '%';
+}
+
+var makeForecastCardFour = function (date, imgSource, temperature, windSpeed, humidity) {
+  cardFourDate.textContent = 'DATE' + date;
+  cardFourWeatherIcon.src = 'http://openweathermap.org/img/wn/' + imgSource + '.png';
+  cardFourTemperature.textContent = 'Temperature: ' + temperature + '°F' ;
+  cardFourWindSpeed.textContent = 'Wind: ' + windSpeed + ' MPH';
+  cardFourHumidity.textContent = 'Humidity: ' + humidity + '%';
+}
+
+var makeForecastCardFive = function (date, imgSource, temperature, windSpeed, humidity) {
+  cardFiveDate.textContent = 'DATE' + date;
+  cardFiveWeatherIcon.src = 'http://openweathermap.org/img/wn/' + imgSource + '.png';
+  cardFiveTemperature.textContent = 'Temperature: ' + temperature + '°F' ;
+  cardFiveWindSpeed.textContent = 'Wind: ' + windSpeed + ' MPH';
+  cardFiveHumidity.textContent = 'Humidity: ' + humidity + '%';
+}
+
+
+
