@@ -66,7 +66,7 @@ var btnSearchCity = function (event) {
 
 // function to take user input of city name and search it through the open weather API
 var getCityWeather = function (city) {
-  var apiURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=c5ac3bf1e2bd986188132643f307e82c'
+  var apiURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=c5ac3bf1e2bd986188132643f307e82c'
   fetch(apiURL)
     .then(function (response) {
       if (response.ok) {
