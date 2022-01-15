@@ -23,7 +23,7 @@
     <h2 id="search-text"> Enter a city's name to search the weather</h2>
     <form class="input-form-body" id="btn-search-city">
       <input name="city" id="city" type="text" class="form-input" placeholder="Moscow" /><br>
-      <button type="submit" class="btn btn-info search-city-button btn-block" id=>Click to Search City</button>
+      <button type="submit" class="btn btn-info search-city-button btn-block">Click to Search City</button>
     </form>
     <div class='previous-city-container col'>
       <p id='previous-search-tip'> Want to check out a city you've already searched? Look below</p>
@@ -39,87 +39,85 @@
 
   <div class="current-city-weather container">
     <div class="row row-cols-3">
-      <div id="searched-city-container container" class="current-city-container col">
+      <div id="searched-city-container" class="current-city-container col">
         <div class="row" id="current-city-name"></div>
         <div class="row" id="current-city-date"></div>
-        <div class="row "> <img class="hide" id="current-city-icon" src=''
-            alt='weather icon depecting current weather conditions for selected city'></div>
+        <div class="row "> <img class="hide" id="current-city-icon" src='' alt='weather-icon'></div>
         <div class="row" id="current-city-temperature"></div>
         <div class="row" id="current-city-humidity"></div>
         <div class="row" id="current-city-windspeed"></div>
         <div class="row uvindex-favorable" id="current-city-uv-index"></div>
       </div>
     </div>
-    </main>
   </div>
 
   <div class="container">
     <h2>5-Day Forecast:</h2>
     <!-- Content here -->
-<div class ="row">
-<!-- card 1 -->
-<div class="col card-col">
-  <div class="card forecast-card" style="width: 10rem;">
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item forecast-card" id = "card-1-date">Search a city to get the forecast</li>
-      <li class="list-group-item forecast-card"><img src =''id = "card-1-weather-icon"></li>
-      <li class="list-group-item forecast-card" id = "card-1-temperature"></li>
-      <li class="list-group-item forecast-card" id = "card-1-wind-speed"></li>
-      <li class="list-group-item forecast-card" id = "card-1-humidity"></li>
-    </ul>
-  </div>
-</div>
-<!-- card 2 -->
-<div class="col card-col">
-  <div class="card forecast-card" style="width: 10rem;">
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item forecast-card" id = "card-2-date">Search a city to get the forecast</li>
-      <li class="list-group-item forecast-card"><img src =''id = "card-2-weather-icon"></li>
-      <li class="list-group-item forecast-card" id = "card-2-temperature"></li>
-      <li class="list-group-item forecast-card" id = "card-2-wind-speed"></li>
-      <li class="list-group-item forecast-card" id = "card-2-humidity"></li>
-    </ul>
-  </div>
-</div>
-<!-- card 3 -->
-  <div class="col card-col">
-    <div class="card forecast-card" style="width: 10rem;">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item forecast-card" id = "card-3-date">Search a city to get the forecast</li>
-        <li class="list-group-item forecast-card"><img src =''id = "card-3-weather-icon"></li>
-        <li class="list-group-item forecast-card" id = "card-3-temperature"></li>
-        <li class="list-group-item forecast-card" id = "card-3-wind-speed"></li>
-        <li class="list-group-item forecast-card" id = "card-3-humidity"></li>
-      </ul>
-    </div>
-  </div>
-<!-- card 4 -->
-<div class="col card-col">
-  <div class="card forecast-card" style="width: 10rem;">
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item forecast-card" id = "card-4-date">Search a city to get the forecast</li>
-      <li class="list-group-item forecast-card"><img src =''id = "card-4-weather-icon"></li>
-      <li class="list-group-item forecast-card" id = "card-4-temperature"></li>
-      <li class="list-group-item forecast-card" id = "card-4-wind-speed"></li>
-      <li class="list-group-item forecast-card" id = "card-4-humidity"></li>
-    </ul>
-  </div>
-</div>
-<!-- card 5 -->
-<div class="col card-col">
-  <div class="card forecast-card" style="width: 10rem;">
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item forecast-card" id = "card-5-date">Search a city to get the forecast</li>
-      <li class="list-group-item forecast-card"><img src =''id = "card-5-weather-icon"></li>
-      <li class="list-group-item forecast-card" id = "card-5-temperature"></li>
-      <li class="list-group-item forecast-card" id = "card-5-wind-speed"></li>
-      <li class="list-group-item forecast-card" id = "card-5-humidity"></li>
-    </ul>
-  </div>
-</div>
-  
+    <div class="row">
+      <!-- card 1 -->
+      <div class="col card-col">
+        <div class="card forecast-card" style="width: 10rem;">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item forecast-card" id="card-1-date">Search a city to get the forecast</li>
+            <li class="list-group-item forecast-card"><img src='' id="card-1-weather-icon"></li>
+            <li class="list-group-item forecast-card" id="card-1-temperature"></li>
+            <li class="list-group-item forecast-card" id="card-1-wind-speed"></li>
+            <li class="list-group-item forecast-card" id="card-1-humidity"></li>
+          </ul>
+        </div>
+      </div>
+      <!-- card 2 -->
+      <div class="col card-col">
+        <div class="card forecast-card" style="width: 10rem;">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item forecast-card" id="card-2-date">Search a city to get the forecast</li>
+            <li class="list-group-item forecast-card"><img src='' id="card-2-weather-icon"></li>
+            <li class="list-group-item forecast-card" id="card-2-temperature"></li>
+            <li class="list-group-item forecast-card" id="card-2-wind-speed"></li>
+            <li class="list-group-item forecast-card" id="card-2-humidity"></li>
+          </ul>
+        </div>
+      </div>
+      <!-- card 3 -->
+      <div class="col card-col">
+        <div class="card forecast-card" style="width: 10rem;">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item forecast-card" id="card-3-date">Search a city to get the forecast</li>
+            <li class="list-group-item forecast-card"><img src='' id="card-3-weather-icon"></li>
+            <li class="list-group-item forecast-card" id="card-3-temperature"></li>
+            <li class="list-group-item forecast-card" id="card-3-wind-speed"></li>
+            <li class="list-group-item forecast-card" id="card-3-humidity"></li>
+          </ul>
+        </div>
+      </div>
+      <!-- card 4 -->
+      <div class="col card-col">
+        <div class="card forecast-card" style="width: 10rem;">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item forecast-card" id="card-4-date">Search a city to get the forecast</li>
+            <li class="list-group-item forecast-card"><img src='' id="card-4-weather-icon"></li>
+            <li class="list-group-item forecast-card" id="card-4-temperature"></li>
+            <li class="list-group-item forecast-card" id="card-4-wind-speed"></li>
+            <li class="list-group-item forecast-card" id="card-4-humidity"></li>
+          </ul>
+        </div>
+      </div>
+      <!-- card 5 -->
+      <div class="col card-col">
+        <div class="card forecast-card" style="width: 10rem;">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item forecast-card" id="card-5-date">Search a city to get the forecast</li>
+            <li class="list-group-item forecast-card"><img src='' id="card-5-weather-icon"></li>
+            <li class="list-group-item forecast-card" id="card-5-temperature"></li>
+            <li class="list-group-item forecast-card" id="card-5-wind-speed"></li>
+            <li class="list-group-item forecast-card" id="card-5-humidity"></li>
+          </ul>
+        </div>
+      </div>
 
-</div>
+
+    </div>
   </div>
 
   <div class="previously-searched-cities">

@@ -236,5 +236,3 @@ var humanDateFormat = dateObject.toLocaleString()
   cardFiveWindSpeed.textContent = 'Wind: ' + windSpeed + ' MPH';
   cardFiveHumidity.textContent = 'Humidity: ' + humidity + '%';
 }
-
-
