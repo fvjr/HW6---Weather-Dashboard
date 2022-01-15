@@ -18,15 +18,15 @@ var forecastContainer = document.querySelector('#city-5-day-forecast-container')
 //api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
 
 //retrieve data from the weather api
-fetch(`http://api.openweathermap.org/data/2.5/weather?q=philadelphia&appid=c5ac3bf1e2bd986188132643f307e82c`)
-  .then(function (response) {
-    console.log(response);
-    return response.json();
-  })
-  .then(function (data) {
-    console.log(data);
-  }
-  );
+// fetch(`http://api.openweathermap.org/data/2.5/weather?q=philadelphia&appid=c5ac3bf1e2bd986188132643f307e82c`)
+//   .then(function (response) {
+//     console.log(response);
+//     return response.json();
+//   })
+//   .then(function (data) {
+//     console.log(data);
+//   }
+//   );
 
 //function to search city via API
 var btnSearchCity = function (event) {
@@ -52,11 +52,33 @@ var getCityWeather = function (city) {
           currentCityDate.textContent = date.add(10, 'days').calendar();
           currentCityIcon.classList.remove("hide");
           currentCityIcon.src = 'http://openweathermap.org/img/wn/' + data.weather[0].icon + '.png';
+          currentCityIcon.setAttribute('style', 'background-color: red');
           currentCityName.append(currentCityIcon);
           currentCityTemperature.textContent = 'Temp: ' + data.main.temp + ' °F';
           currentCityHumidity.textContent = 'Humidity: ' + data.main.humidity + '%';
           currentCityWindspeed.textContent = 'Windspeed: ' + data.wind.speed + ' MPH';
           console.log(data.coord.lat, data.coord.lon); findUVIndex(data.coord.lat, data.coord.lon);
+          getForecast(data.coord.lat, data.coord.lon);
+        });
+      } else {
+        alert('Error: ' + response.statusText);
+      }
+    })
+    .catch(function (error) {
+      alert('Unable to search city at this time, please try again later');
+    }
+    );
+};
+
+var getForecast = function (lat,lon) {
+  var apiURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&units=imperial&exclude=hourly&appid=c5ac3bf1e2bd986188132643f307e82c'
+  fetch(apiURL)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          console.log(response)
+          console.log(data)
+          createForecastCards(data.daily[0].temp.max, data.daily[0].wind_speed, data.daily[0].humidity);
         });
       } else {
         alert('Error: ' + response.statusText);
@@ -69,32 +91,50 @@ var getCityWeather = function (city) {
 };
 
 //creating logic for forecast card creation
-var forecastCard = document.createElement("div");
-forecastContainer.append(forecastCard);
-var forecastCardDate = document.createElement("h3");
-forecastCardDate.textContent = 'TEST DATE';
-forecastCard.append(forecastCardDate);
-var forecastCardWeatherIcon = document.createElement("h3");
-forecastCardWeatherIcon.textContent = 'IMG PLACEHOLDER'
-forecastCard.append(forecastCardWeatherIcon);
-var forecastCardTemperature = document.createElement("h3");
-forecastCardTemperature.textContent ='TEMP place holder';
-forecastCard.append(forecastCardTemperature);
-var forecastCardWindSpeed = document.createElement("h3");
-forecastCardWindSpeed.textContent = 'WINDSPEED PLACEHOLDER';
-forecastCard.append(forecastCardWindSpeed)
-var forecastCardHumidity = document.createElement("h3");
-forecastCardHumidity.textContent ='HUMIDITY PLACEHOLDER'
-forecastCard.append(forecastCardHumidity)
 
+//to do
+//change li's back to h3
+//
 
 //function to display 5 day forecast in container for 5 day forecast
-var createForecast = function (date, weatherIcon, temperature, windSpeed, humidity) {
+//var createForecast = function (date, weatherIcon, temperature, windSpeed, humidity);
+
+//date
+//weather icon
+//temperature
+//wind-speed
+//humidity
+
+var createForecastCards = function (temperature, windSpeed, humidity) {
   var forecastCard = document.createElement("div");
+  forecastCard.classList.add("card");
+  forecastCard.classList.add("forecast-card");
+  forecastCard.setAttribute('style', 'width: 18rem');
   forecastContainer.append(forecastCard);
-  var forecastCardDate = document.createElement("h3");
-  forecastCardDate.textContent = 'TEST DATE';
-  forecastCard.append(forecastCardDate);
+  var foreCastCardUL = document.createElement('ul');
+  foreCastCardUL.classList.add("list-group");
+  foreCastCardUL.classList.add("list-group-flush")
+  forecastCard.append(foreCastCardUL)
+  var forecastCardDate = document.createElement("li");
+  forecastCardDate.textContent = 'date';
+  forecastCardDate.classList.add("list-group-item");
+  foreCastCardUL.append(forecastCardDate);
+  var forecastCardWeatherIcon = document.createElement("li");
+  forecastCardWeatherIcon.textContent = 'IMG PLACEHOLDER';
+  forecastCardWeatherIcon.classList.add('list-group-item');
+  foreCastCardUL.append(forecastCardWeatherIcon);
+  var forecastCardTemperature = document.createElement("li");
+  forecastCardTemperature.textContent = 'temp' + temperature;
+  forecastCardTemperature.classList.add('list-group-item');
+  foreCastCardUL.append(forecastCardTemperature);
+  var forecastCardWindSpeed = document.createElement("li");
+  forecastCardWindSpeed.textContent = 'WINDSPEED PLACEHOLDER' + windSpeed;
+  forecastCardWindSpeed.classList.add('list-group-item');
+  foreCastCardUL.append(forecastCardWindSpeed);
+  var forecastCardHumidity = document.createElement("li");
+  forecastCardHumidity.textContent = 'HUMIDITY PLACEHOLDER' + humidity;
+  foreCastCardUL.append(forecastCardHumidity);
+  forecastCardHumidity.classList.add('list-group-item');
 }
 //create container/card
 //date
@@ -103,7 +143,11 @@ var createForecast = function (date, weatherIcon, temperature, windSpeed, humidi
 //wind-speed
 //humidity
 
-
+// createForecastCards();
+// createForecastCards();
+// createForecastCards();
+// createForecastCards();
+// createForecastCards();
 
 //function to dynamically color the UV index depending on if conditions are favorable, moderate, or severe
 
@@ -127,7 +171,7 @@ var calvinToFarenheit = function (num) {
 // function to get UV index
 var findUVIndex = function (lat, lon) {
   var uvindex;
-  var UVIndexURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude=hourly,daily&appid=c5ac3bf1e2bd986188132643f307e82c';
+  var UVIndexURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude=hourly,minutely,daily&appid=c5ac3bf1e2bd986188132643f307e82c';
   fetch(UVIndexURL)
     .then(function (response) {
       // if (response.ok) {
@@ -151,3 +195,9 @@ var findUVIndex = function (lat, lon) {
   return uvindex
 }
 
+//use one call for count
+//example:   var apiURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude=hourly&appid=c5ac3bf1e2bd986188132643f307e82c'
+//use inline class for cards
+//use moment for time
+//moment documntation - in for loop add one day 
+//local storage class video helpful 
