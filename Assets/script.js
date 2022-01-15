@@ -51,9 +51,8 @@ var getCityWeather = function (city) {
           currentCityName.textContent = data.name;
           currentCityDate.textContent = date.add(10, 'days').calendar();
           currentCityIcon.classList.remove("hide");
-          currentCityIcon.src = 'http://openweathermap.org/img/wn/' + data.weather[0].icon + '.png';
-          currentCityIcon.setAttribute('style', 'background-color: red');
-          currentCityName.append(currentCityIcon);
+          currentCityIcon.src = 'http://openweathermap.org/img/wn/' + data.weather[0].icon + '@2x.png';
+          // currentCityIcon.setAttribute('style', 'background-color: red');
           currentCityTemperature.textContent = 'Temp: ' + data.main.temp + ' °F';
           currentCityHumidity.textContent = 'Humidity: ' + data.main.humidity + '%';
           currentCityWindspeed.textContent = 'Windspeed: ' + data.wind.speed + ' MPH';
@@ -78,7 +77,9 @@ var getForecast = function (lat,lon) {
         response.json().then(function (data) {
           console.log(response)
           console.log(data)
-          createForecastCards(data.daily[0].temp.max, data.daily[0].wind_speed, data.daily[0].humidity);
+          console.log(data.daily[0].weather[0].icon)
+          for (let i = 0; i < 5; i++){
+          createForecastCards(data.daily[i].dt, data.daily[i].weather[0].icon, data.daily[i].temp.max, data.daily[i].wind_speed, data.daily[i].humidity);}
         });
       } else {
         alert('Error: ' + response.statusText);
@@ -105,7 +106,11 @@ var getForecast = function (lat,lon) {
 //wind-speed
 //humidity
 
-var createForecastCards = function (temperature, windSpeed, humidity) {
+// 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&units=imperial&exclude=hourly&appid=c5ac3bf1e2bd986188132643f307e82c'
+
+// .src = 'http://openweathermap.org/img/wn/' + data.daily[i].weather.icon + '.png';
+
+var createForecastCards = function (date, imgSource, temperature, windSpeed, humidity) {
   var forecastCard = document.createElement("div");
   forecastCard.classList.add("card");
   forecastCard.classList.add("forecast-card");
@@ -116,23 +121,23 @@ var createForecastCards = function (temperature, windSpeed, humidity) {
   foreCastCardUL.classList.add("list-group-flush")
   forecastCard.append(foreCastCardUL)
   var forecastCardDate = document.createElement("li");
-  forecastCardDate.textContent = 'date';
+  forecastCardDate.textContent = 'date' + date;
   forecastCardDate.classList.add("list-group-item");
   foreCastCardUL.append(forecastCardDate);
   var forecastCardWeatherIcon = document.createElement("li");
-  forecastCardWeatherIcon.textContent = 'IMG PLACEHOLDER';
+  forecastCardWeatherIcon.src = 'http://openweathermap.org/img/wn/' + imgSource + '.png';
   forecastCardWeatherIcon.classList.add('list-group-item');
   foreCastCardUL.append(forecastCardWeatherIcon);
   var forecastCardTemperature = document.createElement("li");
-  forecastCardTemperature.textContent = 'temp' + temperature;
+  forecastCardTemperature.textContent = 'Temperature: ' + temperature + 'F°';
   forecastCardTemperature.classList.add('list-group-item');
   foreCastCardUL.append(forecastCardTemperature);
   var forecastCardWindSpeed = document.createElement("li");
-  forecastCardWindSpeed.textContent = 'WINDSPEED PLACEHOLDER' + windSpeed;
+  forecastCardWindSpeed.textContent = 'Windspeed: ' + windSpeed + 'MPH';
   forecastCardWindSpeed.classList.add('list-group-item');
   foreCastCardUL.append(forecastCardWindSpeed);
   var forecastCardHumidity = document.createElement("li");
-  forecastCardHumidity.textContent = 'HUMIDITY PLACEHOLDER' + humidity;
+  forecastCardHumidity.textContent = 'Humidity: ' + humidity + '%';
   foreCastCardUL.append(forecastCardHumidity);
   forecastCardHumidity.classList.add('list-group-item');
 }
