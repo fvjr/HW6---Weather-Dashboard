@@ -12,6 +12,7 @@ var currentCityTemperature = document.querySelector('#current-city-temperature')
 var currentCityHumidity = document.querySelector('#current-city-humidity');
 var currentCityWindspeed = document.querySelector('#current-city-windspeed');
 var currentCityUVIndex = document.querySelector('#current-city-uv-index');
+var forecastContainer = document.querySelector('#city-5-day-forecast-container')
 
 //open weather api
 //api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
@@ -47,7 +48,6 @@ var getCityWeather = function (city) {
       if (response.ok) {
         response.json().then(function (data) {
           console.log(data)
-          //START
           currentCityName.textContent = data.name;
           currentCityDate.textContent = date.add(10, 'days').calendar();
           currentCityIcon.classList.remove("hide");
@@ -68,10 +68,42 @@ var getCityWeather = function (city) {
     );
 };
 
-//function to display weather for searched city into a container of info for city's weather on CURRENT DAY
-//var displayWeather = function (){}
+//creating logic for forecast card creation
+var forecastCard = document.createElement("div");
+forecastContainer.append(forecastCard);
+var forecastCardDate = document.createElement("h3");
+forecastCardDate.textContent = 'TEST DATE';
+forecastCard.append(forecastCardDate);
+var forecastCardWeatherIcon = document.createElement("h3");
+forecastCardWeatherIcon.textContent = 'IMG PLACEHOLDER'
+forecastCard.append(forecastCardWeatherIcon);
+var forecastCardTemperature = document.createElement("h3");
+forecastCardTemperature.textContent ='TEMP place holder';
+forecastCard.append(forecastCardTemperature);
+var forecastCardWindSpeed = document.createElement("h3");
+forecastCardWindSpeed.textContent = 'WINDSPEED PLACEHOLDER';
+forecastCard.append(forecastCardWindSpeed)
+var forecastCardHumidity = document.createElement("h3");
+forecastCardHumidity.textContent ='HUMIDITY PLACEHOLDER'
+forecastCard.append(forecastCardHumidity)
+
 
 //function to display 5 day forecast in container for 5 day forecast
+var createForecast = function (date, weatherIcon, temperature, windSpeed, humidity) {
+  var forecastCard = document.createElement("div");
+  forecastContainer.append(forecastCard);
+  var forecastCardDate = document.createElement("h3");
+  forecastCardDate.textContent = 'TEST DATE';
+  forecastCard.append(forecastCardDate);
+}
+//create container/card
+//date
+//weather icon
+//temperature
+//wind-speed
+//humidity
+
+
 
 //function to dynamically color the UV index depending on if conditions are favorable, moderate, or severe
 

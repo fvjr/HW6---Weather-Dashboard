@@ -140,6 +140,11 @@ text-align: center;
   text-align: center;
 }
 
+#forecast-header {
+  text-align: center;
+  margin-right:100px;
+}
+
 .card {
   width: 20px;
 }
