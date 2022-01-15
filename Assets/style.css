@@ -144,10 +144,15 @@ text-align: center;
   margin-right: 50px;
 }
 
+.col {
+  border-radius: solid var(--light-blue)25px;
+}
+
 .forecast-card {
   background-color: var(--dark);
   color: var(--primary);
   text-align: center;
+  border-radius: solid var(--light-blue)25px;
 }
 
 /* .row {

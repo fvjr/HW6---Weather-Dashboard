@@ -51,7 +51,6 @@ var cardFive = [
   cardFiveWindSpeed= document.querySelector('#card-5-wind-speed'),
   cardFiveHumidity= document.querySelector('#card-5-humidity'),
 ]
-//converting unixTiestamp to EST
 
 //function to search city via API
 var btnSearchCity = function (event) {
@@ -104,11 +103,11 @@ var getForecast = function (lat,lon) {
           console.log(response)
           console.log(data)
           console.log(data.daily[0].weather[0].icon) 
-          makeForecastCardOne(data.daily[1].dt, data.daily[1].weather[0].icon, data.daily[1].temp.day, data.daily[1].wind_speed, data.daily[1].humidity);
-          makeForecastCardTwo(data.daily[2].dt, data.daily[2].weather[0].icon, data.daily[2].temp.day, data.daily[2].wind_speed, data.daily[2].humidity)
-          makeForecastCardThree(data.daily[3].dt, data.daily[3].weather[0].icon, data.daily[3].temp.day, data.daily[3].wind_speed, data.daily[3].humidity)
-          makeForecastCardFour(data.daily[4].dt, data.daily[4].weather[0].icon, data.daily[4].temp.day, data.daily[4].wind_speed, data.daily[4].humidity)
-          makeForecastCardFive(data.daily[5].dt, data.daily[5].weather[0].icon, data.daily[5].temp.day, data.daily[5].wind_speed, data.daily[5].humidity)
+          makeForecastCardOne(data.daily[0].dt, data.daily[0].weather[0].icon, data.daily[0].temp.day, data.daily[0].wind_speed, data.daily[0].humidity);
+          makeForecastCardTwo(data.daily[1].dt, data.daily[1].weather[0].icon, data.daily[1].temp.day, data.daily[1].wind_speed, data.daily[1].humidity)
+          makeForecastCardThree(data.daily[2].dt, data.daily[2].weather[0].icon, data.daily[2].temp.day, data.daily[2].wind_speed, data.daily[2].humidity)
+          makeForecastCardFour(data.daily[3].dt, data.daily[3].weather[0].icon, data.daily[3].temp.day, data.daily[3].wind_speed, data.daily[3].humidity)
+          makeForecastCardFive(data.daily[4].dt, data.daily[4].weather[0].icon, data.daily[4].temp.day, data.daily[4].wind_speed, data.daily[4].humidity)
         });
       } else {
         alert('Error: ' + response.statusText);
@@ -169,7 +168,7 @@ var findUVIndex = function (lat, lon) {
 
 //functions to make forecast cards -> could be improved through use of for-loop
 var makeForecastCardOne = function (date, imgSource, temperature, windSpeed, humidity) {
-
+//converting unixTiestamp to EST
 var unixTimestamp;
 unixTimestamp = date
 var milliseconds = unixTimestamp* 1000 
