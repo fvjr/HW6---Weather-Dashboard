@@ -142,9 +142,11 @@ text-align: center;
 #forecast-header {
   text-align: center;
   margin-right: 50px;
+  border-color: var(--dark-blue);
+  border-width: 5px;
 }
 
-.col {
+.container {
   border-radius: solid var(--light-blue)25px;
 }
 
@@ -152,7 +154,8 @@ text-align: center;
   background-color: var(--dark);
   color: var(--primary);
   text-align: center;
-  border-radius: solid var(--light-blue)25px;
+  border-color: var(--dark-blue);
+  border-width: 5px;
 }
 
 /* .row {
@@ -160,3 +163,7 @@ text-align: center;
   margin-right:0px;
 } */
 
+.card-col {
+  padding-top:15px;
+  padding-bottom:15px;
+}
