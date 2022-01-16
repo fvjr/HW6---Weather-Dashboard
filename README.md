@@ -27,3 +27,4 @@ Assistance provided by Penn LPS Coding Boot Camp/Trilogy Education Services.
 3.) https://www.w3schools.com/js/default.asp
 4.) https://developer.mozilla.org/en-US/docs/Web/JavaScript
 5.) https://coderrocketfuel.com/
+6.) https://icons8.com/ (icons)
