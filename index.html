@@ -21,19 +21,13 @@
 
   <div class="search-container">
     <h2 id="search-text"> Enter a city's name to search the weather</h2>
-    <form class="input-form-body" id="btn-search-city">
+    <form class="input-form-body save saveBtn" id="btn-search-city">
       <input name="city" id="city" type="text" class="form-input" placeholder="Moscow" /><br>
       <button type="submit" class="btn btn-info search-city-button btn-block">Click to Search City</button>
     </form>
-    <div class='previous-city-container col'>
+    <div class='previous-city-container previous-container col' id= "previous-container" >
       <p id='previous-search-tip'> Want to check out a city you've already searched? Look below</p>
-      <button type="button" class="btn btn-secondary btn-lg btn-block">Previous City </button>
-      <button type="button" class="btn btn-secondary btn-lg btn-block">Previous City </button>
-      <button type="button" class="btn btn-secondary btn-lg btn-block">Previous City </button>
-      <button type="button" class="btn btn-secondary btn-lg btn-block">Previous City </button>
-      <button type="button" class="btn btn-secondary btn-lg btn-block">Previous City </button>
-      <button type="button" class="btn btn-secondary btn-lg btn-block">Previous City </button>
-      <button type="button" class="btn btn-secondary btn-lg btn-block">Previous City </button>
+      <div class = 'searched-container'></div>
     </div>
   </div>
 
@@ -129,9 +123,6 @@
     </div>
   </div>
 
-  <div class="previously-searched-cities">
-
-  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
     integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>

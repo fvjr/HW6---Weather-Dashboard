@@ -14,95 +14,103 @@ var currentCityHumidity = document.querySelector('#current-city-humidity');
 var currentCityWindspeed = document.querySelector('#current-city-windspeed');
 var currentCityUVIndex = document.querySelector('#current-city-uv-index');
 var forecastContainer = document.querySelector('#city-5-day-forecast-container')
-var dayArray = [];
+var cityData = JSON.parse(localStorage.getItem('city')) || [];
+
+var searchedCityContainer = document.querySelector('#previous-container');
+
+
+
 //access cards via DOM
 var cardOne = [
-  cardOneDate =  document.querySelector('#card-1-date'),
-  cardOneWeatherIcon =  document.querySelector('#card-1-weather-icon'),
-  cardOneTemperature =  document.querySelector('#card-1-temperature'),
-  cardOneWindSpeed= document.querySelector('#card-1-wind-speed'),
-  cardOneHumidity= document.querySelector('#card-1-humidity'),
+  cardOneDate = document.querySelector('#card-1-date'),
+  cardOneWeatherIcon = document.querySelector('#card-1-weather-icon'),
+  cardOneTemperature = document.querySelector('#card-1-temperature'),
+  cardOneWindSpeed = document.querySelector('#card-1-wind-speed'),
+  cardOneHumidity = document.querySelector('#card-1-humidity'),
 ]
 var cardTwo = [
-  cardTwoDate =  document.querySelector('#card-2-date'),
-  cardTwoWeatherIcon =  document.querySelector('#card-2-weather-icon'),
-  cardTwoTemperature =  document.querySelector('#card-2-temperature'),
-  cardTwoWindSpeed= document.querySelector('#card-2-wind-speed'),
-  cardTwoHumidity= document.querySelector('#card-2-humidity'),
+  cardTwoDate = document.querySelector('#card-2-date'),
+  cardTwoWeatherIcon = document.querySelector('#card-2-weather-icon'),
+  cardTwoTemperature = document.querySelector('#card-2-temperature'),
+  cardTwoWindSpeed = document.querySelector('#card-2-wind-speed'),
+  cardTwoHumidity = document.querySelector('#card-2-humidity'),
 ]
 var cardThree = [
-  cardThreeDate =  document.querySelector('#card-3-date'),
-  cardThreeWeatherIcon =  document.querySelector('#card-3-weather-icon'),
-  cardThreeTemperature =  document.querySelector('#card-3-temperature'),
-  cardThreeWindSpeed= document.querySelector('#card-3-wind-speed'),
-  cardThreeHumidity= document.querySelector('#card-3-humidity'),
+  cardThreeDate = document.querySelector('#card-3-date'),
+  cardThreeWeatherIcon = document.querySelector('#card-3-weather-icon'),
+  cardThreeTemperature = document.querySelector('#card-3-temperature'),
+  cardThreeWindSpeed = document.querySelector('#card-3-wind-speed'),
+  cardThreeHumidity = document.querySelector('#card-3-humidity'),
 ]
 var cardFour = [
-  cardFourDate =  document.querySelector('#card-4-date'),
-  cardFourWeatherIcon =  document.querySelector('#card-4-weather-icon'),
-  cardFourTemperature =  document.querySelector('#card-4-temperature'),
-  cardFourWindSpeed= document.querySelector('#card-4-wind-speed'),
-  cardFourHumidity= document.querySelector('#card-4-humidity'),
+  cardFourDate = document.querySelector('#card-4-date'),
+  cardFourWeatherIcon = document.querySelector('#card-4-weather-icon'),
+  cardFourTemperature = document.querySelector('#card-4-temperature'),
+  cardFourWindSpeed = document.querySelector('#card-4-wind-speed'),
+  cardFourHumidity = document.querySelector('#card-4-humidity'),
 ]
 var cardFive = [
-  cardFiveDate =  document.querySelector('#card-5-date'),
-  cardFiveWeatherIcon =  document.querySelector('#card-5-weather-icon'),
-  cardFiveTemperature =  document.querySelector('#card-5-temperature'),
-  cardFiveWindSpeed= document.querySelector('#card-5-wind-speed'),
-  cardFiveHumidity= document.querySelector('#card-5-humidity'),
+  cardFiveDate = document.querySelector('#card-5-date'),
+  cardFiveWeatherIcon = document.querySelector('#card-5-weather-icon'),
+  cardFiveTemperature = document.querySelector('#card-5-temperature'),
+  cardFiveWindSpeed = document.querySelector('#card-5-wind-speed'),
+  cardFiveHumidity = document.querySelector('#card-5-humidity'),
 ]
 
 //function to search city via API
 var btnSearchCity = function (event) {
   event.preventDefault();
+  //  console.log(event.target);
+
+  showCitySearch();
   var city = cityInputEl.value.trim();
+  // console.log(city);
   if (city) {
     getCityWeather(city);
-    console.log(city);
   } else {
-    cityInputEl.placeholder = 'Error - no city name entered'
+    cityInputEl.placeholder = 'No city name entered'
   }
 };
 
 // function to take user input of city name and search it through the open weather API
 var getCityWeather = function (city) {
   var apiURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=c5ac3bf1e2bd986188132643f307e82c'
-  fetch(apiURL)
-    .then(function (response) {
-      if (response.ok) {
-        response.json().then(function (data) {
-          console.log(data)
-          currentCityName.textContent = data.name;
-          // currentCityDate.textContent = date.add(10, 'days').calendar();
-          currentCityDate.textContent = date.add(0, 'days').calendar();
-          currentCityIcon.classList.remove("hide");
-          currentCityIcon.src = 'http://openweathermap.org/img/wn/' + data.weather[0].icon + '@2x.png';
-          // currentCityIcon.setAttribute('style', 'background-color: red');
-          currentCityTemperature.textContent = 'Temp: ' + data.main.temp + ' °F';
-          currentCityHumidity.textContent = 'Humidity: ' + data.main.humidity + '%';
-          currentCityWindspeed.textContent = 'Windspeed: ' + data.wind.speed + ' MPH';
-          console.log(data.coord.lat, data.coord.lon); findUVIndex(data.coord.lat, data.coord.lon);
-          getForecast(data.coord.lat, data.coord.lon);
-        });
-      } else {
-        alert('Error: ' + response.statusText);
-      }
-    })
-    .catch(function (error) {
-      alert('Unable to search city at this time, please try again later');
-    }
-    );
+  cityData.push(city)
+  cityInputEl.val = '';
+  localStorage.setItem("city", JSON.stringify(cityData))
+  if (city !== "") {
+    fetch(apiURL)
+      .then(function (response) {
+        if (response.ok) {
+          response.json().then(function (data) {
+            console.log(data)
+            currentCityDate.textContent = date.add(0, 'days').calendar();
+            currentCityIcon.classList.remove("hide");
+            currentCityIcon.src = 'http://openweathermap.org/img/wn/' + data.weather[0].icon + '@2x.png';
+            currentCityTemperature.textContent = 'Temp: ' + data.main.temp + ' °F';
+            currentCityHumidity.textContent = 'Humidity: ' + data.main.humidity + '%';
+            currentCityWindspeed.textContent = 'Windspeed: ' + data.wind.speed + ' MPH';
+            findUVIndex(data.coord.lat, data.coord.lon);
+            getForecast(data.coord.lat, data.coord.lon);
+          });
+        } else {
+          alert('Error: ' + response.statusText);
+        }
+      })
+      .catch(function (error) {
+        // alert('Unable to search city at this time, please try again later');
+        console.log(error);
+      });
+  }
 };
 
-var getForecast = function (lat,lon) {
+var getForecast = function (lat, lon) {
   var apiURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&units=imperial&exclude=hourly&appid=c5ac3bf1e2bd986188132643f307e82c'
   fetch(apiURL)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
-          console.log(response)
           console.log(data)
-          console.log(data.daily[0].weather[0].icon) 
           makeForecastCardOne(data.daily[0].dt, data.daily[0].weather[0].icon, data.daily[0].temp.day, data.daily[0].wind_speed, data.daily[0].humidity);
           makeForecastCardTwo(data.daily[1].dt, data.daily[1].weather[0].icon, data.daily[1].temp.day, data.daily[1].wind_speed, data.daily[1].humidity)
           makeForecastCardThree(data.daily[2].dt, data.daily[2].weather[0].icon, data.daily[2].temp.day, data.daily[2].wind_speed, data.daily[2].humidity)
@@ -110,21 +118,17 @@ var getForecast = function (lat,lon) {
           makeForecastCardFive(data.daily[4].dt, data.daily[4].weather[0].icon, data.daily[4].temp.day, data.daily[4].wind_speed, data.daily[4].humidity)
         });
       } else {
-        alert('Error: ' + response.statusText);
+        console.log('Error: ' + response.statusText);
       }
     })
     .catch(function (error) {
-      alert('Unable to search city at this time, please try again later');
+      // alert('Unable to search city at this time, please try again later');
+      console.log(error)
     }
     );
 };
 
-// function to save previously searched cities in local storage which then shows current and forecast for these cities
-
-btnSearchCityEl.addEventListener('submit', btnSearchCity)
-//previous searches div
-//use boostrap classes to go to bottom left of page
-//for previous searches, I could have 7 buttons be generated already but have them hidden, as they are saved I can toggle classes to make them visible and store info in them
+btnSearchCityEl.addEventListener("submit", btnSearchCity)
 
 var calvinToFarenheit = function (num) {
   // Fahrenheit	℉=((K-273.15)*1.8)+32
@@ -159,80 +163,129 @@ var findUVIndex = function (lat, lon) {
   return uvindex
 }
 
-//use one call for count
-//example:   var apiURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude=hourly&appid=c5ac3bf1e2bd986188132643f307e82c'
-//use inline class for cards
-//use moment for time
-//moment documntation - in for loop add one day 
-//local storage class video helpful 
-
 //functions to make forecast cards -> could be improved through use of for-loop
 var makeForecastCardOne = function (date, imgSource, temperature, windSpeed, humidity) {
-//converting unixTiestamp to EST
-var unixTimestamp;
-unixTimestamp = date
-var milliseconds = unixTimestamp* 1000 
-var dateObject = new Date(milliseconds)
-var humanDateFormat = dateObject.toLocaleString()
+  //converting unixTiestamp to EST
+  var unixTimestamp;
+  unixTimestamp = date
+  var milliseconds = unixTimestamp * 1000
+  var dateObject = new Date(milliseconds)
+  var humanDateFormat = dateObject.toLocaleString()
 
   cardOneDate.textContent = humanDateFormat;
   cardOneWeatherIcon.src = 'http://openweathermap.org/img/wn/' + imgSource + '.png';
-  cardOneTemperature.textContent = 'Temperature: ' + temperature + '°F' ;
+  cardOneTemperature.textContent = 'Temperature: ' + temperature + '°F';
   cardOneWindSpeed.textContent = 'Wind: ' + windSpeed + ' MPH';
   cardOneHumidity.textContent = 'Humidity: ' + humidity + '%';
 
- 
+
 }
 var makeForecastCardTwo = function (date, imgSource, temperature, windSpeed, humidity) {
 
   var unixTimestamp;
-unixTimestamp = date
-var milliseconds = unixTimestamp* 1000 
-var dateObject = new Date(milliseconds)
-var humanDateFormat = dateObject.toLocaleString()
+  unixTimestamp = date
+  var milliseconds = unixTimestamp * 1000
+  var dateObject = new Date(milliseconds)
+  var humanDateFormat = dateObject.toLocaleString()
 
   cardTwoDate.textContent = humanDateFormat;
   cardTwoWeatherIcon.src = 'http://openweathermap.org/img/wn/' + imgSource + '.png';
-  cardTwoTemperature.textContent = 'Temperature: ' + temperature + '°F' ;
+  cardTwoTemperature.textContent = 'Temperature: ' + temperature + '°F';
   cardTwoWindSpeed.textContent = 'Wind: ' + windSpeed + ' MPH';
   cardTwoHumidity.textContent = 'Humidity: ' + humidity + '%';
 }
 var makeForecastCardThree = function (date, imgSource, temperature, windSpeed, humidity) {
   var unixTimestamp;
-unixTimestamp = date
-var milliseconds = unixTimestamp* 1000 
-var dateObject = new Date(milliseconds)
-var humanDateFormat = dateObject.toLocaleString()
+  unixTimestamp = date
+  var milliseconds = unixTimestamp * 1000
+  var dateObject = new Date(milliseconds)
+  var humanDateFormat = dateObject.toLocaleString()
 
   cardThreeDate.textContent = humanDateFormat;
   cardThreeWeatherIcon.src = 'http://openweathermap.org/img/wn/' + imgSource + '.png';
-  cardThreeTemperature.textContent = 'Temperature: ' + temperature + '°F' ;
+  cardThreeTemperature.textContent = 'Temperature: ' + temperature + '°F';
   cardThreeWindSpeed.textContent = 'Wind: ' + windSpeed + ' MPH';
   cardThreeHumidity.textContent = 'Humidity: ' + humidity + '%';
 }
 var makeForecastCardFour = function (date, imgSource, temperature, windSpeed, humidity) {
   var unixTimestamp;
-unixTimestamp = date
-var milliseconds = unixTimestamp* 1000 
-var dateObject = new Date(milliseconds)
-var humanDateFormat = dateObject.toLocaleString()
+  unixTimestamp = date
+  var milliseconds = unixTimestamp * 1000
+  var dateObject = new Date(milliseconds)
+  var humanDateFormat = dateObject.toLocaleString()
 
   cardFourDate.textContent = humanDateFormat;
   cardFourWeatherIcon.src = 'http://openweathermap.org/img/wn/' + imgSource + '.png';
-  cardFourTemperature.textContent = 'Temperature: ' + temperature + '°F' ;
+  cardFourTemperature.textContent = 'Temperature: ' + temperature + '°F';
   cardFourWindSpeed.textContent = 'Wind: ' + windSpeed + ' MPH';
   cardFourHumidity.textContent = 'Humidity: ' + humidity + '%';
 }
 var makeForecastCardFive = function (date, imgSource, temperature, windSpeed, humidity) {
   var unixTimestamp;
-unixTimestamp = date
-var milliseconds = unixTimestamp* 1000 
-var dateObject = new Date(milliseconds)
-var humanDateFormat = dateObject.toLocaleString()
+  unixTimestamp = date
+  var milliseconds = unixTimestamp * 1000
+  var dateObject = new Date(milliseconds)
+  var humanDateFormat = dateObject.toLocaleString()
 
   cardFiveDate.textContent = humanDateFormat;
   cardFiveWeatherIcon.src = 'http://openweathermap.org/img/wn/' + imgSource + '.png';
-  cardFiveTemperature.textContent = 'Temperature: ' + temperature + '°F' ;
+  cardFiveTemperature.textContent = 'Temperature: ' + temperature + '°F';
   cardFiveWindSpeed.textContent = 'Wind: ' + windSpeed + ' MPH';
   cardFiveHumidity.textContent = 'Humidity: ' + humidity + '%';
 }
+
+function showCitySearch() {
+  //get previously searched cities
+var buttonContainer = document.querySelector('.searched-container');
+buttonContainer.innerHTML ='';
+cityData.forEach(function(city){
+var button = document.createElement('button');
+button.textContent = city;
+button.setAttribute('class', 'btn btn-primary');
+button.setAttribute('data-city', city);
+button.onclick = function(){
+  console.log(city);
+};
+
+buttonContainer.appendChild(button)
+})
+
+
+
+
+}
+
+showCitySearch();
+
+
+
+
+
+
+//define what you're looking for, create variable to get it, console.log a variable to make sure it's not undefined or null, use the variable 
+
+// {
+  // if (searchedCityContainer.hasChildNodes()) {
+  //   while (searchedCityContainer.firstChild) {
+  //     searchedCityContainer.removeChild(searchedCityContainer.lastChild);
+  //   }
+  // }
+  // var searchedCities = JSON.parse(localStorage.getItem("city"));
+  // if (searchedCities !== null) {
+  //   cityData = searchedCities
+  //   for (let i = 0; i < searchedCities.length; i++) {
+  //     var searchedCityButton = document.createElement("button");
+  //     searchedCityButton.textContent = searchedCities[i];
+  //     searchedCityButton.addEventListener("submit", function (city) {
+  //       cityInputEl.val = this.textContent
+  //       console.log(city);
+        // getCityWeather(city)
+      // })
+
+      // searchedCityContainer.appendChild(searchedCityButton)
+      // searchedCityButton.classList.add('searched');
+      // searchedCityButton.classList.add('col');
+
+//     }
+//   }
+// }

@@ -1,0 +1,4 @@
+modal 
+
+console.log parent element to see which element we want to get 
+h4 modal for recipe is title = parent.parent.text

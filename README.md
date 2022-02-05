@@ -1,30 +1,57 @@
-# HW6-Weather-Dashboard
+# Weather Dashboard   
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+## Description
+This project will allow users to search current and future weather conditions for any city that they search
 
-For this project, I created a website that displays weather conditions for a city. When a user searches a city through the site, they are presented with information on the current weather conditions and a five-day forecast for the searched city. For this site, I used a mix of HTML, CSS, JavaScript, Bootstrap, and the Open Weather Service API. 
+## Table of Contents
+- [Installation](#installation)
+- [Usage](#usage)
+- [Credits](#credits)
+- [Contributing](#contributing)
+- [Credits](#credits)
+- [Resources](#resources)
+- [Tests](#tests)
+- [Questions](#questions)
+- [License](#license)
 
-#Purpose
-This project gave me experience with using JavaScript, HTML, CSS, BootStrap, and Server APIs to create a functioning application.
+## Installation
+Want to install this project?
+Install by cloning from my GitHub Repo 
 
-#Usage
-To view my project (and search a city's weather conditions) simply click the attached link and you'll be able to see the deployed project.
-https://fvjr.github.io/HW6---Weather-Dashboard/
+## Usage
+Instructions and examples for use:
+Clone the repo and then run the index through terminal with the command "node index.js"
 
-![Project mock-up image.](./Assets/weather-dashboard-screenshot.png)
-Link:(https://github.com/fvjr/HW5-Daily-Planner/settings/pages/source)
+## Credits
+N/A
 
-Also, here's my code for the project in my Git repository:
-https://github.com/fvjr/HW6---Weather-Dashboard
+## Resources
+Open Weather Service API
 
-#Contributing 
-To access the code, access my GitHub repo titled "HW6---Weather-Dashboard". My GitHub repo is linked above. If you have any ideas of how to simplify or improve some code, please feel free to reach out! I'll continue to improve the project as I have time to work on it.
+## Contributing
+Interested in contributing?
+Contact me with any suggestions for improvment
 
-#Credits 
-Assistance provided by Penn LPS Coding Boot Camp/Trilogy Education Services.
+## Tests
+Want to run tests with this project?
+ Run via node and then run your testing files
 
-#Resources
-1.) https://getbootstrap.com/docs/5.1/getting-started/introduction/
-2.) https://momentjs.com/
-3.) https://www.w3schools.com/js/default.asp
-4.) https://developer.mozilla.org/en-US/docs/Web/JavaScript
-5.) https://coderrocketfuel.com/
-6.) https://icons8.com/ (icons)
+## Questions 
+Have any questions or want to collaborate on another project? 
+Feel free to contact me!
+Email me - vasquezjrf@gmail.com!
+Reach me on GitHub - https://github.com/fvjr!
+
+## License
+MIT
+
+
+    >
+Copyright 2022 -- Author's GitHub:fvjr
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+    
